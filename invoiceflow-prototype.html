@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceFlow</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: #f0f3fa;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #293a85;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .my-account-btn {
+            background-color: #3d68ff;
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .my-account-btn:hover {
+            background-color: #2a4cbe;
+        }
+
+        .container {
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-content {
+            flex: 1;
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 0;
+            color: #555;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #293a85;
+        }
+
+        .nav-item i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .active {
+            color: #293a85;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        .dashboard-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            flex: 1;
+            background-color: #fff9e6;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border-left: 5px solid #ffc107;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Make the form respond to different screen sizes */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .dashboard-stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">InvoiceFlow</div>
+        <button class="my-account-btn">My Account</button>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2 class="nav-title">Navigation</h2>
+            <div class="nav-item active">
+                <i>📄</i>
+                <span>Create Invoice</span>
+            </div>
+            <div class="nav-item">
+                <i>📨</i>
+                <span>Sent Invoices</span>
+            </div>
+            <div class="nav-item">
+                <i>💰</i>
+                <span>Payments</span>
+            </div>
+            <div class="nav-item">
+                <i>📊</i>
+                <span>Reports</span>
+            </div>
+            <div class="nav-item">
+                <i>⚙️</i>
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="section-title">New Invoice</h1>
+            <form id="invoice-form">
+                <div class="form-group">
+                    <label for="client-name" class="form-label">Client Name</label>
+                    <input type="text" id="client-name" class="form-input" placeholder="e.g. Daniel Adejuwon">
+                </div>
+
+                <div class="form-group">
+                    <label for="service" class="form-label">Service Provided</label>
+                    <select id="service" class="form-select">
+                        <option value="graphic-design">Graphic Design</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="digital-marketing">Digital Marketing</option>
+                        <option value="content-creation">Content Creation</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount" class="form-label">Amount (₦)</label>
+                    <input type="number" id="amount" class="form-input" placeholder="e.g. 15000">
+                </div>
+
+                <div class="form-group">
+                    <label for="client-contact" class="form-label">Client Contact</label>
+                    <input type="text" id="client-contact" class="form-input" placeholder="e.g. +234 701 234 5678">
+                </div>
+
+                <button type="submit" class="submit-btn">Send Invoice</button>
+            </form>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-title">Pending Invoices</div>
+                    <div class="stat-value">₦25,000</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #28a745;">
+                    <div class="stat-title">Paid Invoices</div>
+                    <div class="stat-value">₦90,000</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #dc3545;">
+                    <div class="stat-title">Overdue</div>
+                    <div class="stat-value">₦7,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle form submission
+            const form = document.getElementById('invoice-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const clientName = document.getElementById('client-name').value;
+                const service = document.getElementById('service').value;
+                const amount = document.getElementById('amount').value;
+                const clientContact = document.getElementById('client-contact').value;
+                
+                if (!clientName || !amount || !clientContact) {
+                    alert('Please fill all required fields');
+                    return;
+                }
+                
+                // In a real application, this would send data to a server
+                alert(`Invoice created successfully for ${clientName}!\nService: ${service}\nAmount: ₦${amount}`);
+                
+                // Reset form
+                form.reset();
+            });
+            
+            // Navigation item click handlers
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    navItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // In a real application, this would navigate to different pages
+                    // Here we'll just show an alert with the clicked item
+                    const pageName = this.querySelector('span').textContent;
+                    if (pageName !== 'Create Invoice') {
+                        alert(`Navigating to: ${pageName} (This would go to a different page in a real application)`);
+                    }
+                });
+            });
+            
+            // My Account button click handler
+            const accountBtn = document.querySelector('.my-account-btn');
+            accountBtn.addEventListener('click', function() {
+                alert('My Account settings would open here');
+            });
+        });
+    </script>
+</body>
+</html>
